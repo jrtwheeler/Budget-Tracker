@@ -19,7 +19,7 @@ router.post("/api/transaction/bulk", async ({ body }, res) => {
   }
 });
 
-router.get("/api/transaction", (req, res) => {
+router.get("/api/transaction", async (req, res) => {
   try {
     const dbTransaction = await Transaction.find({}).sort({ date: -1 })
     res.json(dbTransaction);
