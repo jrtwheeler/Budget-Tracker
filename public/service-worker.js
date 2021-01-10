@@ -12,19 +12,18 @@ const FILES_TO_CACHE = [
 const CACHE_NAME = "static-cache-v2";
 const DATA_CACHE_NAME = "data-cache-v1";
 
-// install
-self.addEventListener("install", function(evt) {
+// install and register
+self.addEventListener("install", (evt) => {
   evt.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log("Your files were pre-cached successfully!");
+      //this will run after cache is opened
       return cache.addAll(FILES_TO_CACHE);
     })
   );
-
   self.skipWaiting();
 });
 
-self.addEventListener("activate", function(evt) {
+self.addEventListener("activate", (evt) => {
   evt.waitUntil(
     caches.keys().then(keyList => {
       return Promise.all(
